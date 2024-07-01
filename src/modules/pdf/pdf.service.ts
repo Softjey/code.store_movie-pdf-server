@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { jsPDF } from 'jspdf';
-import Movie from '../movie-api/types/movie.interface';
+import Movie from '../movie/types/movie.interface';
 
 @Injectable()
 export class PdfService {

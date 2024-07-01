@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import MovieApiService from './movie-api.service';
+import MovieApiService from './services/movie-api.service';
 
 @Module({
   providers: [MovieApiService],
   exports: [MovieApiService],
 })
-export class MovieApiModule {}
+export class MovieModule {}

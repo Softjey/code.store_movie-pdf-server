@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import EnvVariable from '../config/config.types';
+import EnvVariable from '../../config/config.types';
 import axios, { AxiosInstance } from 'axios';
-import PopularMoviesResponse from './types/popular-movies.response';
-import Movie from './types/movie.interface';
-import { DetailedMovie } from './types/detailed-movie.interface';
+import PopularMoviesResponse from '../types/popular-movies.response';
+import Movie from '../types/movie.interface';
+import { DetailedMovie } from '../types/detailed-movie.interface';
 
 @Injectable()
 export default class MovieApiService {
