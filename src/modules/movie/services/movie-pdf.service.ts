@@ -4,7 +4,7 @@ import jsPDF from 'jspdf';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import EnvVariable from 'src/modules/config/env-variable.enum';
-import { DetailedMovieEntry, MovieEntry } from '../types/movie-entries.types';
+import { DetailedMovieEntry, MovieEntry } from '../types/movie.types';
 
 @Injectable()
 export default class MoviePdfService {
