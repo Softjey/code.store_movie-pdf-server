@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import EnvVariable from '../../config/config.types';
+import EnvVariable from '../../config/env-variable.enum';
 import axios, { AxiosInstance } from 'axios';
 import PopularMoviesResponse from '../types/popular-movies.response';
 import Movie from '../types/movie.interface';
@@ -11,7 +11,7 @@ export default class MovieApiService {
   private axios: AxiosInstance;
 
   constructor(private readonly configService: ConfigService) {
-    const apiKey = this.configService.get(EnvVariable.API_KEY);
+    const apiKey = this.configService.get(EnvVariable.MOVIE_API_KEY);
 
     this.axios = axios.create({
       baseURL: 'https://api.themoviedb.org/3',

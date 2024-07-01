@@ -1,8 +1,9 @@
 import { Controller, Get, Header, Param, ParseIntPipe, Res } from '@nestjs/common';
 import { MovieService } from './services/movie.service';
 import { Response } from 'express';
+import MoviePaths from './utils/movie-paths.enum';
 
-@Controller('movies')
+@Controller(MoviePaths.MOVIES)
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
