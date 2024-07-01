@@ -3,13 +3,20 @@ import { jsPDF } from 'jspdf';
 
 @Injectable()
 export class PdfService {
-  generateBuffer(constructor: (pdf: jsPDF) => void) {
+  async generateBuffer(constructor: (pdf: jsPDF) => void | Promise<void>) {
     const pdf = new jsPDF();
 
-    constructor(pdf);
+    await constructor(pdf);
 
     const arrayBuffer = pdf.output('arraybuffer');
 
     return Buffer.from(arrayBuffer);
+  }
+
+  async getBase64FromUrl(url: string) {
+    const response = await fetch(url);
+    const blob = await response.arrayBuffer();
+
+    return Buffer.from(blob).toString('base64');
   }
 }

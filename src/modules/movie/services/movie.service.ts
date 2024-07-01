@@ -12,7 +12,7 @@ export class MovieService {
 
   async getPopularMoviesPdf() {
     const { results: movies } = await this.movieApiService.fetchPopularMovies();
-    const pdfBuffer = this.moviePdfService.createMoviesListPDF(movies);
+    const pdfBuffer = await this.moviePdfService.createMoviesListPDF(movies);
 
     return {
       pdfBuffer,
@@ -22,7 +22,7 @@ export class MovieService {
 
   async getMoviePdfById(id: Movie['id']) {
     const movie = await this.movieApiService.fetchMovieById(id);
-    const pdfBuffer = this.moviePdfService.createMoviePDF(movie);
+    const pdfBuffer = await this.moviePdfService.createMoviePDF(movie);
 
     return {
       pdfBuffer,
