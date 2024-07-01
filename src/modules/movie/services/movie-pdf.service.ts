@@ -8,7 +8,7 @@ import { DetailedMovieEntry, MovieEntry } from '../types/movie.types';
 
 @Injectable()
 export default class MoviePdfService {
-  apiImgBaseUrl: string;
+  private readonly apiImgBaseUrl: string;
 
   constructor(
     private readonly configService: ConfigService,
@@ -34,7 +34,7 @@ export default class MoviePdfService {
   }
 
   createMoviesListPDF(movies: MovieEntry[]) {
-    return this.pdfService.generateBuffer((pdf: any) => {
+    return this.pdfService.generateBuffer((pdf) => {
       let y = 30;
 
       pdf.setFont('helvetica', 'bold');

@@ -24,7 +24,7 @@ export default class MovieCacheService {
   }
 
   setMovieByIdBuffer(id: Movie['id'], data: PdfDetailedMovieData) {
-    this.setBuffer(`${this.moviePrefix}:${id}`, data, 1);
+    this.setBuffer(`${this.moviePrefix}:${id}`, data, 10);
   }
 
   private async getBuffer(key: string): Promise<PdfMoviesData | PdfDetailedMovieData | null> {
@@ -35,11 +35,13 @@ export default class MovieCacheService {
     if ('pdf' in parsedData) {
       parsedData.pdf = Buffer.from(parsedData.pdf, 'base64');
     }
+
     return parsedData;
   }
 
   private setBuffer(key: string, data: PdfMoviesData | PdfDetailedMovieData, ttl: number) {
     const dataToSave = { ...data, pdf: data.pdf.toString('base64') };
+
     this.redis.set(key, JSON.stringify(dataToSave), 'EX', ttl * 60);
   }
 }

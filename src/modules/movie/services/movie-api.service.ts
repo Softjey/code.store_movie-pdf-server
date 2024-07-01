@@ -8,7 +8,7 @@ import { DetailedMovie } from '../types/detailed-movie.interface';
 
 @Injectable()
 export default class MovieApiService {
-  private axios: AxiosInstance;
+  private readonly axios: AxiosInstance;
 
   constructor(private readonly configService: ConfigService) {
     const apiKey = this.configService.get(EnvVariable.MOVIE_API_KEY);

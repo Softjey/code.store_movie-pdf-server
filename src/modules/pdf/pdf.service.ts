@@ -15,8 +15,8 @@ export class PdfService {
 
   async getBase64FromUrl(url: string) {
     const response = await fetch(url);
-    const blob = await response.arrayBuffer();
+    const arrayBuffer = await response.arrayBuffer();
 
-    return Buffer.from(blob).toString('base64');
+    return Buffer.from(arrayBuffer).toString('base64');
   }
 }
