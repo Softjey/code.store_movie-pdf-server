@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import MovieApiService from './movie-api.service';
 import { PdfService } from 'src/modules/pdf/pdf.service';
+import Movie from '../types/movie.interface';
 
 @Injectable()
 export class MovieService {
@@ -14,6 +15,20 @@ export class MovieService {
     const pdfArrayBuffer = await this.pdfService.createMoviesListPDF(movies);
     const pdfBuffer = Buffer.from(pdfArrayBuffer);
 
-    return pdfBuffer;
+    return {
+      pdfBuffer,
+      movies,
+    };
+  }
+
+  async getMoviePdfById(id: Movie['id']) {
+    const movie = await this.movieApiService.fetchMovieById(id);
+    const pdfArrayBuffer = await this.pdfService.createMoviePDF(movie);
+    const pdfBuffer = Buffer.from(pdfArrayBuffer);
+
+    return {
+      pdfBuffer,
+      movie,
+    };
   }
 }
