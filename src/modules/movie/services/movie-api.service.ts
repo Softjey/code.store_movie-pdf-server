@@ -12,11 +12,9 @@ export default class MovieApiService {
 
   constructor(private readonly configService: ConfigService) {
     const apiKey = this.configService.get(EnvVariable.MOVIE_API_KEY);
+    const baseURL = this.configService.get(EnvVariable.MOVIE_API_BASE_URL);
 
-    this.axios = axios.create({
-      baseURL: 'https://api.themoviedb.org/3',
-      params: { api_key: apiKey },
-    });
+    this.axios = axios.create({ baseURL, params: { api_key: apiKey } });
   }
 
   async fetchPopularMovies() {
